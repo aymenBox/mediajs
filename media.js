@@ -17,7 +17,7 @@ function mediajs(stremObj){
              return null;
          }
      }
-
+/**this function will stop the capture from the srcObject  */
      self.stopCapture=function(evt){
         let trak = stremObj.srcObject.getTracks();
         trak.forEach(trak => {
@@ -25,8 +25,11 @@ function mediajs(stremObj){
         });
         stremObj.srcObject=null;
     }
-
-    self.startRecording = function(stremObj,stopRecord){
+/**this funtion will rercord the strem from the srtremObj.scrObject then 
+ * and create a new MediaRecorder and a data array wich wlill be passed later 
+ * to a Blob (binary large object) to create the finale video
+ */
+    self.startRecording = function(stopRecord){
         stremObj.srcObject.captureStream = stremObj.srcObject.captureStream || stremObj.srcObject.mozCaptureStream;
         let recorder = new MediaRecorder(stremObj.srcObject);
         let data=[];
@@ -48,11 +51,11 @@ function mediajs(stremObj){
         ])
         .then(() => data);
     }
-
-    self.downloadstrem = function (recordedChunks,download,recordedVideo){
+/**this function will create the blob vased on the recorded from the recording function
+ */
+    self.downloadstrem = function (recordedChunks,download){
         let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
-        recordedVideo.src = URL.createObjectURL(recordedBlob);
-        download.href = recordedVideo.src;
+        download.href = URL.createObjectURL(recordedBlob);
         download.download = "RecordedVideo.mp4"; 
     }
     return self;
