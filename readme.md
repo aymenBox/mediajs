@@ -1,7 +1,7 @@
 # media.js
 media.js is a mini javaScript library made for learining purposes that use mediaDevice
 API and give you the needed function to speed your development process , clone this project and see for yourself.
-![record](RecordedVideo1)
+![record](RecordedVideo1.gif)
 
 # how to implement 
 this library is easy to use just download the media.js file and put it in your html project
